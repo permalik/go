@@ -15,6 +15,18 @@ func main() {
     binaryNine := 0b1001
     binaryTen := 0b1010
 
+    octalZero := 0o0
+    octalOne := 0o1
+    octalTwo := 0o2
+    octalThree := 0o3
+    octalFour := 0o4
+    octalFive := 0o5
+    octalSix := 0o6
+    octalSeven := 0o7
+    octalEight := 0o10
+    octalNine := 0o11
+    octalTen := 0o12
+
     binarySlice := []int{
         binaryZero,
         binaryOne,
@@ -29,10 +41,29 @@ func main() {
         binaryTen,
     }
 
-    counter := 0
+    octalSlice := []int{
+        octalZero,
+        octalOne,
+        octalTwo,
+        octalThree,
+        octalFour,
+        octalFive,
+        octalSix,
+        octalSeven,
+        octalEight,
+        octalNine,
+        octalTen,
+    }
 
-    for ; counter < len(binarySlice); {
-        fmt.Println(binarySlice[counter])
+    counter := 0
+    sliceLength := 10
+
+    for ; counter <= sliceLength; {
+        fmt.Printf(
+            "binary: %v\toctal: %v\n",
+            binarySlice[counter],
+            octalSlice[counter],
+            )
         counter++
     }
 }
