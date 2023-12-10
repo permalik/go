@@ -14,16 +14,26 @@ func main() {
     binaryEight := 0b1000
     binaryNine := 0b1001
     binaryTen := 0b1010
-    fmt.Println(binaryZero)
-    fmt.Println(binaryOne)
-    fmt.Println(binaryTwo)
-    fmt.Println(binaryThree)
-    fmt.Println(binaryFour)
-    fmt.Println(binaryFive)
-    fmt.Println(binarySix)
-    fmt.Println(binarySeven)
-    fmt.Println(binaryEight)
-    fmt.Println(binaryNine)
-    fmt.Println(binaryTen)
+
+    binarySlice := []int{
+        binaryZero,
+        binaryOne,
+        binaryTwo,
+        binaryThree,
+        binaryFour,
+        binaryFive,
+        binarySix,
+        binarySeven,
+        binaryEight,
+        binaryNine,
+        binaryTen,
+    }
+
+    counter := 0
+
+    for ; counter < len(binarySlice); {
+        fmt.Println(binarySlice[counter])
+        counter++
+    }
 }
 
