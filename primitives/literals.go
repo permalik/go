@@ -106,6 +106,34 @@ func main() {
         0o12,
     }
 
+    hexadecimalNames := []string{
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "a",
+    }
+
+    hexadecimalNumbers := []int{
+        0x0,
+        0x1,
+        0x2,
+        0x3,
+        0x4,
+        0x5,
+        0x6,
+        0x7,
+        0x8,
+        0x9,
+        0xa,
+    }
+
     decimalParams := []interface{}{
         "decimal",
         decimalNames,
@@ -124,10 +152,17 @@ func main() {
         octalNumbers,
     }
 
+    hexadecimalParams := []interface{}{
+        "hexadecimal",
+        hexadecimalNames,
+        hexadecimalNumbers,
+    }
+
     numericalTypes := [][]interface{}{
         decimalParams,
         binaryParams,
         octalParams,
+        hexadecimalParams,
     }
 
     for i := 0; i < len(numericalTypes); i++ {
