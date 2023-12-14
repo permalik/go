@@ -1,13 +1,17 @@
 package main 
 
-import "fmt"
+import (
+    "bufio"
+    "fmt"
+    "os"
+)
 
 type NumberTuple struct {
     Name string
     Number int
 }
 
-func sliceGen(names []string, numbers [] int) []NumberTuple{
+func sliceGen(names []string, numbers [] int) []NumberTuple {
     const iterLen int = 10
     result := make([] NumberTuple, 0)
 
@@ -20,6 +24,22 @@ func sliceGen(names []string, numbers [] int) []NumberTuple{
     }
     return result
 }
+
+// func intPrint(typeSlice [][]interface{}) int {
+//     for i := 0; i < len(typeSlice); i++ {
+//         nameSlice := typeSlice[i][1]
+//         numberSlice := typeSlice[i][2]
+// 
+//         currentSlice := sliceGen(nameSlice.([]string), numberSlice.([]int))
+// 
+//         fmt.Printf("\n%s\n\n", typeSlice[i][0])
+// 
+//         for j := 0; j < len(currentSlice); j++ {
+//             fmt.Printf("%s::\t%d\n", currentSlice[j].Name, currentSlice[j].Number)
+//         }
+//     }
+//     return 0
+// }
 
 func main() {
     decimalNames := []string{
@@ -135,25 +155,25 @@ func main() {
     }
 
     decimalParams := []interface{}{
-        "decimal",
+        "--Decimal--",
         decimalNames,
         decimalNumbers,
     }
 
     binaryParams := []interface{}{
-        "binary",
+        "--Binary--",
         binaryNames,
         binaryNumbers,
     }
 
     octalParams := []interface{}{
-        "octal",
+        "--Octal--",
         octalNames,
         octalNumbers,
     }
 
     hexadecimalParams := []interface{}{
-        "hexadecimal",
+        "--Hexadecimal--",
         hexadecimalNames,
         hexadecimalNumbers,
     }
@@ -165,10 +185,15 @@ func main() {
         hexadecimalParams,
     }
 
-    for i := 0; i < len(numericalTypes); i++ {
+    scanner := bufio.NewScanner(os.Stdin)
+
+    fmt.Printf("Input y to start\n\n")
+
+    // for scanner.Scan() {
+    for i := 0; scanner.Scan() && i < len(numericalTypes); i++ {
         nameSlice := numericalTypes[i][1]
         numberSlice := numericalTypes[i][2]
-        
+
         currentSlice := sliceGen(nameSlice.([]string), numberSlice.([]int))
 
         fmt.Printf("\n%s\n\n", numericalTypes[i][0])
@@ -176,6 +201,12 @@ func main() {
         for j := 0; j < len(currentSlice); j++ {
             fmt.Printf("%s::\t%d\n", currentSlice[j].Name, currentSlice[j].Number)
         }
+    }
+    if scanner.Text() != "y" {
+        fmt.Printf("get outta here")
+    }
+    if err := scanner.Err(); err != nil {
+        fmt.Fprintln(os.Stderr, "reading standard input:", err)
     }
 }
 
