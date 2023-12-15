@@ -189,21 +189,58 @@ func main() {
 
     fmt.Printf("Input y to start\n\n")
 
-    // for scanner.Scan() {
-    for i := 0; scanner.Scan() && i < len(numericalTypes); i++ {
-        nameSlice := numericalTypes[i][1]
-        numberSlice := numericalTypes[i][2]
+    Loop:
+    for scanner.Scan() {
+        standardInput := scanner.Text()
+        var continueToken bool
+
+        if standardInput == "dec" {
+            continueToken = true
+        } else if standardInput == "bin" {
+            continueToken = true
+        } else if standardInput == "oct" {
+            continueToken = true
+        } else if standardInput == "hex" {
+            continueToken = true
+        } else {
+            continueToken = false
+        }
+
+        if !continueToken {
+            fmt.Println(standardInput)
+            fmt.Printf("get outta here")
+            break Loop
+        }
+
+
+        numericalType := 0
+
+        switch {
+        case standardInput == "dec":
+            numericalType = 0
+        case standardInput == "bin":
+            numericalType = 1
+        case standardInput == "oct":
+            numericalType = 2
+        case standardInput == "hex":
+            numericalType = 3
+    }
+
+        nameSlice := numericalTypes[numericalType][1]
+        numberSlice := numericalTypes[numericalType][2]
+
+
 
         currentSlice := sliceGen(nameSlice.([]string), numberSlice.([]int))
 
-        fmt.Printf("\n%s\n\n", numericalTypes[i][0])
+        fmt.Printf("\n%s\n\n", numericalTypes[numericalType][0])
 
         for j := 0; j < len(currentSlice); j++ {
             fmt.Printf("%s::\t%d\n", currentSlice[j].Name, currentSlice[j].Number)
         }
-    }
-    if scanner.Text() != "y" {
-        fmt.Printf("get outta here")
+
+        fmt.Printf("Input y to continue\n\n")
+
     }
     if err := scanner.Err(); err != nil {
         fmt.Fprintln(os.Stderr, "reading standard input:", err)
